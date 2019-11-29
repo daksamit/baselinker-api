@@ -1,6 +1,6 @@
 {
   "name": "baselinker-api",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -32,7 +32,7 @@
     "build": "tsc",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "test": "jest",
-    "prepare": "npm build"
+    "prepare": "npm run build"
   },
   "husky": {
     "hooks": {
