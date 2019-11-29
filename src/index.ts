@@ -57,7 +57,7 @@ export const baselinkerClient = async (options: types.Options) => {
       return orders || []
     },
     getOrder: async (order_id: number): Promise<types.Order> => {
-      const res: types.OrderResponse = await baselinkerRequest('getOrders', { order_id })
+      const res: types.OrderResponse = await baselinkerRequest('getOrders', { order_id, get_unconfirmed_orders: 1 })
       const order: types.Order = res.orders[0]
       return order || null
     },
