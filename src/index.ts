@@ -18,9 +18,7 @@ export const baselinkerClient = async (options: types.Options) => {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
-    formData: {
-      token: token,
-    },
+    formData: { token },
   }
 
   // TODO: test if token is valid
