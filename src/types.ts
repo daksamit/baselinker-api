@@ -11,13 +11,13 @@ export interface ErrorResponse {
 // https://api.baselinker.com/?method=getOrders
 
 export interface OrderRequest {
-  order_id: number
-  date_confirmed_from: number
-  date_from: number
-  id_from: number
-  get_unconfirmed_orders: boolean
-  status_id: number
-  filter_email: string
+  order_id?: number
+  date_confirmed_from?: number
+  date_from?: number
+  id_from?: number
+  get_unconfirmed_orders?: boolean
+  status_id?: number
+  filter_email?: string
 }
 
 export interface Order {
@@ -88,6 +88,43 @@ export interface Order {
   }[]
 }
 
+export interface OrderFields {
+  order_id?: number
+  admin_comments?: string
+  user_comments?: string
+  payment_method?: string
+  payment_method_cod?: boolean
+  email?: string
+  phone?: string
+  user_login?: string
+  delivery_method?: string
+  delivery_price?: number
+  delivery_fullname?: string
+  delivery_company?: string
+  delivery_address?: string
+  delivery_postcode?: string
+  delivery_city?: string
+  delivery_country?: string
+  delivery_country_code?: string
+  delivery_point_name?: string
+  delivery_point_address?: string
+  delivery_point_postcode?: string
+  delivery_point_city?: string
+  invoice_fullname?: string
+  invoice_company?: string
+  invoice_nip?: string
+  invoice_address?: string
+  invoice_postcode?: string
+  invoice_city?: string
+  invoice_country?: string
+  invoice_country_code?: string
+  want_invoice?: boolean
+  extra_field_1?: string
+  extra_field_2?: string
+  pick_state?: number
+  pack_state?: number
+}
+
 export interface OrderResponse {
   status: string
   orders: Order[]
@@ -95,10 +132,10 @@ export interface OrderResponse {
 
 // https://api.baselinker.com/?method=getJournalList
 
-export interface JournalLogRequest {
-  last_log_id: number
-  logs_types: number[]
-  order_id: number
+export interface JournalListRequest {
+  last_log_id?: number
+  logs_types?: number[]
+  order_id?: number
 }
 
 export interface JournalLog {
@@ -109,7 +146,7 @@ export interface JournalLog {
   date: number
 }
 
-export interface JournalLogResponse {
+export interface JournalListResponse {
   status: string
   logs: JournalLog[]
 }

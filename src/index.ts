@@ -23,7 +23,7 @@ export const baselinkerClient = async (options: types.Options) => {
 
   // TODO: test if token is valid
 
-  const baselinkerRequest = async (method: string, parameters: {}): Promise<any> => {
+  const baselinkerRequest = async (method: string, parameters = {}): Promise<any> => {
     return await new Promise((resolve, reject) => {
       const options = {
         ...requestOptions,
@@ -44,37 +44,37 @@ export const baselinkerClient = async (options: types.Options) => {
 
   return {
     // https://api.baselinker.com/?method=getJournalList
-    getJournalList: async (parameters = {}): Promise<types.JournalLog[]> => {
-      const res: types.JournalLogResponse = await baselinkerRequest('getJournalList', parameters)
+    getJournalList: async (parameters: types.JournalListRequest = {}): Promise<types.JournalLog[]> => {
+      const res: types.JournalListResponse = await baselinkerRequest('getJournalList', parameters)
       const logs: types.JournalLog[] = res.logs
       return logs || []
     },
 
     // https://api.baselinker.com/?method=getOrders
-    getOrders: async (parameters = {}): Promise<types.Order[]> => {
+    getOrders: async (parameters: types.OrderRequest = {}): Promise<types.Order[]> => {
       const res: types.OrderResponse = await baselinkerRequest('getOrders', parameters)
       const orders: types.Order[] = res.orders
       return orders || []
     },
-    getOrder: async (id: number): Promise<types.Order> => {
-      const res: types.OrderResponse = await baselinkerRequest('getOrders', { order_id: id })
+    getOrder: async (order_id: number): Promise<types.Order> => {
+      const res: types.OrderResponse = await baselinkerRequest('getOrders', { order_id })
       const order: types.Order = res.orders[0]
       return order || null
     },
 
     // https://api.baselinker.com/?method=setOrderFields
-    setOrderFields: async (parameters = {}): Promise<types.Order> => {
+    setOrderFields: async (parameters: types.OrderFields = {}): Promise<types.Order> => {
       const res: types.Order = await baselinkerRequest('setOrderFields', parameters)
       return res || null
     },
 
     // https://api.baselinker.com/?method=getOrderStatusList
-    getOrderStatusList: async (parameters = {}): Promise<types.OrderStatus[]> => {
-      const res: types.OrderStatusResponse = await baselinkerRequest('getOrderStatusList', parameters)
+    getOrderStatusList: async (): Promise<types.OrderStatus[]> => {
+      const res: types.OrderStatusResponse = await baselinkerRequest('getOrderStatusList')
       const statuses = res && res.statuses
       return statuses || []
     },
 
-    /* ... list of baselinker methods - https://api.baselinker.com/index.php */
+    // ... list of baselinker methods - https://api.baselinker.com/index.php
   }
 }
