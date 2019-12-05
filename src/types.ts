@@ -163,3 +163,14 @@ export interface OrderStatusResponse {
   status: string
   statuses: OrderStatus[]
 }
+
+export interface Storage {
+  storage_id: number
+  name: string
+  methods: any[]
+}
+
+export interface StoragesListResponse {
+  status: string
+  storages: Storage[]
+}
