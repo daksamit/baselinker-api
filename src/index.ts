@@ -1,7 +1,7 @@
 import request from 'request'
 import * as types from './types'
 
-export const baselinkerClient = async (options: types.Options) => {
+export const baselinkerClient = (options: types.Options) => {
   const { token } = options
 
   if (!options || !token) {
@@ -44,6 +44,12 @@ export const baselinkerClient = async (options: types.Options) => {
 
   return {
     // https://api.baselinker.com/?method=getJournalList
+    request: async (type: string, parameters: any = {}): Promise<any> => {
+      const response: any = await baselinkerRequest(type, parameters)
+      return response || null
+    },
+
+    // https://api.baselinker.com/?method=getJournalList
     getJournalList: async (parameters: types.JournalListRequest = {}): Promise<types.JournalLog[]> => {
       const res: types.JournalListResponse = await baselinkerRequest('getJournalList', parameters)
       const logs: types.JournalLog[] = res.logs
@@ -73,6 +79,13 @@ export const baselinkerClient = async (options: types.Options) => {
       const res: types.OrderStatusResponse = await baselinkerRequest('getOrderStatusList')
       const statuses = res && res.statuses
       return statuses || []
+    },
+
+    // https://api.baselinker.com/?method=getStoragesList
+    getStoragesList: async (): Promise<types.Storage[]> => {
+      const res: types.StoragesListResponse = await baselinkerRequest('getStoragesList')
+      const storages = res && res.storages
+      return storages || []
     },
 
     // ... list of baselinker methods - https://api.baselinker.com/index.php
