@@ -43,7 +43,7 @@ export const baselinkerClient = (options: types.Options) => {
   }
 
   return {
-    // https://api.baselinker.com/?method=getJournalList
+    // https://api.baselinker.com
     request: async (type: string, parameters: any = {}): Promise<any> => {
       const response: any = await baselinkerRequest(type, parameters)
       return response || null
