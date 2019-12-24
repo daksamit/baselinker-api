@@ -88,6 +88,22 @@ export const baselinkerClient = (options: types.Options) => {
       return storages || []
     },
 
+    // https://api.baselinker.com/?method=getProductsList
+    getProductsList: async (parameters: types.ProductListRequest = { storage_id: '' }): Promise<types.Product[]> => {
+      const res: types.ProductsListResponse = await baselinkerRequest('getProductsList', parameters)
+      const products: types.Product[] = res && res.products
+      return products || []
+    },
+
+    // https://api.baselinker.com/?method=getProductsData
+    getProductsData: async (
+      parameters: types.ProductDataRequest = { storage_id: '', products: [] },
+    ): Promise<types.Product[]> => {
+      const res: types.ProductsDataResponse = await baselinkerRequest('getProductsData', parameters)
+      const products: types.Product[] = res && res.products && Object.values(res.products)
+      return products || []
+    },
+
     // ... list of baselinker methods - https://api.baselinker.com/index.php
   }
 }

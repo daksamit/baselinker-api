@@ -174,3 +174,58 @@ export interface StoragesListResponse {
   status: string
   storages: Storage[]
 }
+
+export interface Product {
+  product_id: string
+  ean: string
+  sku: string
+  name: string
+  quantity: number
+  price_brutto: number
+  price_netto?: number
+  price_wholesale_netto?: number
+  tax_rate?: number
+  weight?: number
+  man_name?: string
+  man_image?: string
+  category_id?: number
+  images?: string[]
+  features?: []
+  variants?: []
+  description?: string
+  description_extra1?: string
+  description_extra2?: string
+}
+
+export interface ProductListRequest {
+  storage_id: string
+  filter_category_id?: string
+  filter_sort?: string
+  filter_id?: string
+  filter_ean?: string
+  filter_sku?: string
+  filter_name?: string
+  filter_price_from?: number
+  filter_price_to?: number
+  filter_quantity_from?: .number
+  filter_quantity_to?: number
+  filter_available?: number
+  page?: number
+}
+
+export interface ProductsListResponse {
+  status: string
+  storage_id: string
+  products: Product[]
+}
+
+export interface ProductDataRequest {
+  storage_id: string
+  products?: number[]
+}
+
+export interface ProductsDataResponse {
+  status: string
+  storage_id: string
+  products?: any
+}
