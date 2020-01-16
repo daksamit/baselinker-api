@@ -207,7 +207,7 @@ export interface ProductListRequest {
   filter_name?: string
   filter_price_from?: number
   filter_price_to?: number
-  filter_quantity_from?: .number
+  filter_quantity_from?: number
   filter_quantity_to?: number
   filter_available?: number
   page?: number

@@ -31,14 +31,14 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "eslint \"**/*.ts\" --quiet --fix",
     "test": "jest",
     "prepare": "npm run build"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npm test"
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
     }
   }
 }
