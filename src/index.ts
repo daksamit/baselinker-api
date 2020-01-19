@@ -1,7 +1,7 @@
 import request from 'request'
 import * as types from './types'
 
-export const baselinkerClient = (options: types.Options) => {
+const baselinkerClient = (options: types.Options) => {
   const { token } = options
 
   if (!options || !token) {
@@ -107,3 +107,5 @@ export const baselinkerClient = (options: types.Options) => {
     // ... list of baselinker methods - https://api.baselinker.com/index.php
   }
 }
+
+export { baselinkerClient, types }
