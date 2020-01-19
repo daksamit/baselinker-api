@@ -9,7 +9,10 @@
   ],
   "repository": "git@github.com:daksamit/baselinker-api.git",
   "author": "Dominik Aksamit <daksamit@daksamit.pl>",
-  "keywords": [],
+  "keywords": [
+    "baselinker",
+    "baselinker-api"
+  ],
   "license": "MIT",
   "dependencies": {
     "request": "^2.88.0"
