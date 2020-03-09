@@ -89,17 +89,22 @@ const baselinkerClient = (options: types.Options) => {
     },
 
     // https://api.baselinker.com?method=getProductsList
-    getProductsList: async (parameters: types.ProductListRequest = { storage_id: '' }): Promise<types.Product[]> => {
-      const res: types.ProductsListResponse = await baselinkerRequest('getProductsList', parameters)
+    getProductsList: async (parameters: types.ProductListRequest): Promise<types.Product[]> => {
+      const res: types.ProductsListResponse = await baselinkerRequest('getProductsList', {
+        storage_id: 'bl_1',
+        ...parameters,
+      })
       const products: types.Product[] = res && res.products
       return products || []
     },
 
     // https://api.baselinker.com?method=getProductsData
-    getProductsData: async (
-      parameters: types.ProductDataRequest = { storage_id: '', products: [] },
-    ): Promise<types.Product[]> => {
-      const res: types.ProductsDataResponse = await baselinkerRequest('getProductsData', parameters)
+    getProductsData: async (parameters: types.ProductDataRequest): Promise<types.Product[]> => {
+      const res: types.ProductsDataResponse = await baselinkerRequest('getProductsData', {
+        storage_id: 'bl_1',
+        products: [],
+        ...parameters,
+      })
       const products: types.Product[] = res && res.products && Object.values(res.products)
       return products || []
     },
