@@ -229,3 +229,43 @@ export interface ProductsDataResponse {
   storage_id: string
   products?: any
 }
+
+export interface AddCategoryRequest {
+  storage_id?: string
+  category_id?: number
+  name: string
+  parent_id?: number
+}
+
+export interface AddCategoryResponse {
+  status: string
+  storage_id: string
+  category_id: number
+}
+
+export interface AddProductRequest {
+  storage_id?: string
+  product_id?: string
+  ean?: string
+  sku?: string
+  name: string
+  quantity?: number
+  price_brutto?: number
+  price_wholesale_netto?: number
+  tax_rate?: number
+  weight?: number
+  description?: string
+  description_extra1?: string
+  description_extra2?: string
+  man_name?: string
+  category_id: number
+  images?: string[]
+  features?: { name: string; value: string }[]
+}
+
+export interface AddProductResponse {
+  status: string
+  storage_id: string
+  product_id: string
+  warnings: any
+}

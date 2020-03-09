@@ -49,14 +49,14 @@ const baselinkerClient = (options: types.Options) => {
       return response || null
     },
 
-    // https://api.baselinker.com/?method=getJournalList
+    // https://api.baselinker.com?method=getJournalList
     getJournalList: async (parameters: types.JournalListRequest = {}): Promise<types.JournalLog[]> => {
       const res: types.JournalListResponse = await baselinkerRequest('getJournalList', parameters)
       const logs: types.JournalLog[] = res.logs
       return logs || []
     },
 
-    // https://api.baselinker.com/?method=getOrders
+    // https://api.baselinker.com?method=getOrders
     getOrders: async (parameters: types.OrderRequest = {}): Promise<types.Order[]> => {
       const res: types.OrderResponse = await baselinkerRequest('getOrders', parameters)
       const orders: types.Order[] = res.orders
@@ -68,40 +68,59 @@ const baselinkerClient = (options: types.Options) => {
       return order || null
     },
 
-    // https://api.baselinker.com/?method=setOrderFields
+    // https://api.baselinker.com?method=setOrderFields
     setOrderFields: async (parameters: types.OrderFields = {}): Promise<types.Order> => {
       const res: types.Order = await baselinkerRequest('setOrderFields', parameters)
       return res || null
     },
 
-    // https://api.baselinker.com/?method=getOrderStatusList
+    // https://api.baselinker.com?method=getOrderStatusList
     getOrderStatusList: async (): Promise<types.OrderStatus[]> => {
       const res: types.OrderStatusResponse = await baselinkerRequest('getOrderStatusList')
       const statuses = res && res.statuses
       return statuses || []
     },
 
-    // https://api.baselinker.com/?method=getStoragesList
+    // https://api.baselinker.com?method=getStoragesList
     getStoragesList: async (): Promise<types.Storage[]> => {
       const res: types.StoragesListResponse = await baselinkerRequest('getStoragesList')
       const storages = res && res.storages
       return storages || []
     },
 
-    // https://api.baselinker.com/?method=getProductsList
+    // https://api.baselinker.com?method=getProductsList
     getProductsList: async (parameters: types.ProductListRequest = { storage_id: '' }): Promise<types.Product[]> => {
       const res: types.ProductsListResponse = await baselinkerRequest('getProductsList', parameters)
       const products: types.Product[] = res && res.products
       return products || []
     },
 
-    // https://api.baselinker.com/?method=getProductsData
+    // https://api.baselinker.com?method=getProductsData
     getProductsData: async (
       parameters: types.ProductDataRequest = { storage_id: '', products: [] },
     ): Promise<types.Product[]> => {
       const res: types.ProductsDataResponse = await baselinkerRequest('getProductsData', parameters)
       const products: types.Product[] = res && res.products && Object.values(res.products)
       return products || []
+    },
+
+    // https://api.baselinker.com?method=addCategory
+    addCategory: async (parameters: types.AddCategoryRequest): Promise<any> => {
+      const res: types.AddCategoryResponse = await baselinkerRequest('addCategory', {
+        storage_id: 'bl_1',
+        parent_id: 0,
+        ...parameters,
+      })
+      return res
+    },
+
+    // https://api.baselinker.com?method=addProduct
+    addProduct: async (parameters: types.AddProductRequest): Promise<any> => {
+      const res: types.ProductsDataResponse = await baselinkerRequest('addProduct', {
+        storage_id: 'bl_1',
+        ...parameters,
+      })
+      return res
     },
 
     // ... list of baselinker methods - https://api.baselinker.com/index.php
